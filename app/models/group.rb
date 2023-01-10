@@ -1,4 +1,4 @@
-class Class < ApplicationRecord
+class Group < ApplicationRecord
 
   validates :name, :user_id, presence: true
 

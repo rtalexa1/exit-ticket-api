@@ -12,7 +12,7 @@ teachers = User.create([
   { email: "a_fawziyya@gmail.com", first_name: "Aïcha", last_name: "Fawziyya" } 
   ])
 
-classes = Class.create([
+groups = Group.create([
   { name: "Roadrunners", user_id: 1 },
   { name: "Serpents", user_id: 2 },
   { name: "Jaguars", user_id: 3 }
