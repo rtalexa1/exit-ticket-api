@@ -6,6 +6,7 @@ class Group < ApplicationRecord
     class_name: "User",
     foreign_key: :user_id,
     primary_key: :id
-  has_many :students
-
+  has_many :group_enrollments
+  has_many :students,
+    through: :group_enrollments
 end

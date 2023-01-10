@@ -1,8 +1,9 @@
 class Student < ApplicationRecord
 
-  validates :first_name, :last_name, :group_id, presence: true
+  validates :first_name, :last_name, presence: true
 
-  belongs_to :group
+  has_many :group_enrollments
+  has_many :groups, through: :group_enrollments
   has_many :teachers,
     class_name: "User",
     through: :groups
