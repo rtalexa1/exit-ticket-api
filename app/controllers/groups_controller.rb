@@ -5,7 +5,7 @@ class GroupsController < ApplicationController
   def index
     @groups = Group.all
 
-    render json: @groups
+    render json: @groups, only: [:name]
   end
 
   # GET /groups/1
@@ -46,6 +46,6 @@ class GroupsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def group_params
-      params.fetch(:group, {})
+      params.require(:group).permit([:name, :user_id])
     end
 end

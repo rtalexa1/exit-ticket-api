@@ -3,7 +3,8 @@ class StudentsController < ApplicationController
 
   # GET /students
   def index
-    @students = Student.all
+    @group = Group.find(params[:group_id])
+    @students = @group.students
 
     render json: @students
   end
@@ -46,6 +47,6 @@ class StudentsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def student_params
-      params.fetch(:student, {})
+      params.require(:student).permit([:first_name, :last_name])
     end
 end
