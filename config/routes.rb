@@ -5,7 +5,4 @@ Rails.application.routes.draw do
   # root "articles#index"
 
   resources :users
-  resources :groups do
-    resources :students
-  end
 end
