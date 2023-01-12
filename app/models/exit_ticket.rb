@@ -1,0 +1,2 @@
+class ExitTicket < ApplicationRecord
+end
