@@ -12,10 +12,10 @@
 #   { email: "a_fawziyya@gmail.com", first_name: "Aïcha", last_name: "Fawziyya" } 
 #   ])
 
-ReflectionQuestion.create([
-  { text: "How do you feel about what you learned today?" },
-  { text: "Was there anything that clicked for you today?" },
-  { text: "Is there anything that is still fuzzy for you?" },
-  { text: "Do you think you could teach this topic to someone else?" },
-  { text: "How confident are you about your understanding of today's topic?" }
+Question.create([
+  { text: "How do you feel about what you learned today?", exit_ticket_id: 2 },
+  { text: "Was there anything that clicked for you today?", exit_ticket_id: 2 },
+  { text: "Is there anything that is still fuzzy for you?", exit_ticket_id: 2 },
+  { text: "Do you think you could teach this topic to someone else?", exit_ticket_id: 2 },
+  { text: "How confident are you about your understanding of today's topic?", exit_ticket_id: 2 }
 ])
