@@ -10,18 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_01_13_153828) do
+ActiveRecord::Schema[7.0].define(version: 2023_01_13_204456) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "assignments", force: :cascade do |t|
-    t.integer "exit_ticket_id", null: false
-    t.integer "question_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["exit_ticket_id"], name: "index_assignments_on_exit_ticket_id"
-    t.index ["question_id"], name: "index_assignments_on_question_id"
-  end
 
   create_table "exit_tickets", force: :cascade do |t|
     t.integer "user_id"
@@ -30,13 +21,18 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_13_153828) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "grade_level"
+    t.integer "question_one_id", null: false
+    t.integer "question_two_id"
+    t.integer "question_three_id"
+    t.integer "question_four_id"
+    t.integer "question_five_id"
     t.index ["grade_level"], name: "index_exit_tickets_on_grade_level"
     t.index ["subject_area"], name: "index_exit_tickets_on_subject_area"
     t.index ["title"], name: "index_exit_tickets_on_title"
     t.index ["user_id"], name: "index_exit_tickets_on_user_id"
   end
 
-  create_table "reflection_questions", force: :cascade do |t|
+  create_table "questions", force: :cascade do |t|
     t.string "text"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

@@ -1,10 +1,11 @@
 class ExitTicket < ApplicationRecord
 
-  validates :user_id, :title, :grade_level, :subject_area, presence: true
+  validates :user_id, :title, :grade_level, :subject_area, :question_one_id, presence: true
 
   belongs_to :user
-  has_many :assignments
-  has_many :reflection_questions,
-    through: :assignments
+
+  def get_question(question_id, question_type)
+    question_type.find(question_id)
+  end
 
 end
