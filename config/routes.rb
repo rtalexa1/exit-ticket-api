@@ -7,4 +7,6 @@ Rails.application.routes.draw do
   # root "articles#index"
 
   resources :users
+  resources :exit_tickets
+  resources :reflection_questions
 end
