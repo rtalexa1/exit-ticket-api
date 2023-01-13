@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_01_13_204456) do
+ActiveRecord::Schema[7.0].define(version: 2023_01_13_210630) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -21,11 +21,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_13_204456) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "grade_level"
-    t.integer "question_one_id", null: false
-    t.integer "question_two_id"
-    t.integer "question_three_id"
-    t.integer "question_four_id"
-    t.integer "question_five_id"
     t.index ["grade_level"], name: "index_exit_tickets_on_grade_level"
     t.index ["subject_area"], name: "index_exit_tickets_on_subject_area"
     t.index ["title"], name: "index_exit_tickets_on_title"
@@ -36,6 +31,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_13_204456) do
     t.string "text"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "exit_ticket_id", null: false
   end
 
   create_table "users", force: :cascade do |t|
