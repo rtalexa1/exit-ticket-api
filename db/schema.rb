@@ -10,9 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_01_13_152734) do
+ActiveRecord::Schema[7.0].define(version: 2023_01_13_153828) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "assignments", force: :cascade do |t|
+    t.integer "exit_ticket_id", null: false
+    t.integer "question_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["exit_ticket_id"], name: "index_assignments_on_exit_ticket_id"
+    t.index ["question_id"], name: "index_assignments_on_question_id"
+  end
 
   create_table "exit_tickets", force: :cascade do |t|
     t.integer "user_id"
@@ -20,7 +29,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_13_152734) do
     t.string "subject_area"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "grade_level"
+    t.string "grade_level"
     t.index ["grade_level"], name: "index_exit_tickets_on_grade_level"
     t.index ["subject_area"], name: "index_exit_tickets_on_subject_area"
     t.index ["title"], name: "index_exit_tickets_on_title"
