@@ -16,9 +16,10 @@ class ExitTicketsController < ApplicationController
   # POST /exit_tickets
   def create
     @exit_ticket = ExitTicket.new(exit_ticket_params)
+    user = User.find(@exit_ticket.user_id)
 
     if @exit_ticket.save
-      render json: @exit_ticket, status: :created, location: @exit_ticket
+      render json: @exit_ticket, status: :created, location: user_exit_ticket_url(@exit_ticket, user) 
     else
       render json: @exit_ticket.errors, status: :unprocessable_entity
     end
@@ -46,6 +47,6 @@ class ExitTicketsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def exit_ticket_params
-      params.require(:exit_ticket).permit(:user_id, :title, :subject_area)
+      params.require(:exit_ticket).permit(:user_id, :title, :grade_level, :subject_area)
     end
 end
