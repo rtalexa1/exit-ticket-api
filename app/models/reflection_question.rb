@@ -2,5 +2,5 @@ class ReflectionQuestion < ApplicationRecord
 
   validates :text, presence: true
 
-  has_many :exit_ticket_questions
+  has_many :reflection_exit_ticket_questions
 end
