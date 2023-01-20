@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_01_19_154817) do
+ActiveRecord::Schema[7.0].define(version: 2023_01_20_160452) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -55,12 +55,35 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_19_154817) do
     t.index ["user_id"], name: "index_exit_tickets_on_user_id"
   end
 
-  create_table "questions", force: :cascade do |t|
-    t.string "text"
+  create_table "reflection_exit_ticket_questions", force: :cascade do |t|
+    t.integer "exit_ticket_id"
+    t.integer "ref_question_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "exit_ticket_id", null: false
-    t.string "image_url"
+    t.index ["exit_ticket_id"], name: "index_reflection_exit_ticket_questions_on_exit_ticket_id"
+    t.index ["ref_question_id"], name: "index_reflection_exit_ticket_questions_on_ref_question_id"
+  end
+
+  create_table "reflection_questions", force: :cascade do |t|
+    t.text "text"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "standards_based_exit_ticket_questions", force: :cascade do |t|
+    t.integer "exit_ticket_id"
+    t.integer "sb_question_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["exit_ticket_id"], name: "index_standards_based_exit_ticket_questions_on_exit_ticket_id"
+    t.index ["sb_question_id"], name: "index_standards_based_exit_ticket_questions_on_sb_question_id"
+  end
+
+  create_table "standards_based_questions", force: :cascade do |t|
+    t.string "student_expectation"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["student_expectation"], name: "index_standards_based_questions_on_student_expectation"
   end
 
   create_table "users", force: :cascade do |t|
