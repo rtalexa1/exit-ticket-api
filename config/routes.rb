@@ -10,4 +10,6 @@ Rails.application.routes.draw do
   resources :users do
     resources :exit_tickets
   end
+
+  resources :standards_based_questions, only: [:index, :show]
 end

@@ -12,7 +12,7 @@
 #   { email: "a_fawziyya@gmail.com", first_name: "Aïcha", last_name: "Fawziyya" } 
 #   ])
 
-sb_question = StandardsBasedQuestion.new(student_expectation: "32A")
-question_pic = Down.download("https://staar-questions.s3.us-east-2.amazonaws.com/third-grade/math/32A1.jpg")
-sb_question.image.attach(io: question_pic, filename: "32A1.jpg")
-sb_question.save
+# sb_question = StandardsBasedQuestion.new(student_expectation: "32A")
+# question_pic = Down.download("https://staar-questions.s3.us-east-2.amazonaws.com/third-grade/math/32A1.jpg")
+# sb_question.image.attach(io: question_pic, filename: "32A1.jpg")
+# sb_question.save
