@@ -6,16 +6,13 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 
-# teachers = User.create([
+# users = User.create([
 #   { email: "f_ejike@gmail.com", first_name: "Francisca", last_name: "Ejike" },
 #   { email: "d_shekhar@gmail.com", first_name: "Diodotos", last_name: "Shekhar" },
 #   { email: "a_fawziyya@gmail.com", first_name: "Aïcha", last_name: "Fawziyya" } 
 #   ])
 
-Question.create([
-  { text: "How do you feel about what you learned today?", exit_ticket_id: 2 },
-  { text: "Was there anything that clicked for you today?", exit_ticket_id: 2 },
-  { text: "Is there anything that is still fuzzy for you?", exit_ticket_id: 2 },
-  { text: "Do you think you could teach this topic to someone else?", exit_ticket_id: 2 },
-  { text: "How confident are you about your understanding of today's topic?", exit_ticket_id: 2 }
-])
+sb_question = StandardsBasedQuestion.new(student_expectation: "32A")
+question_pic = Down.download("https://staar-questions.s3.us-east-2.amazonaws.com/third-grade/math/32A1.jpg")
+sb_question.image.attach(io: question_pic, filename: "32A1.jpg")
+sb_question.save
