@@ -2,8 +2,9 @@ class StandardsBasedQuestionsController < ApplicationController
   before_action :set_standards_based_question, only: :show
 
   def index
-    @standards_based_questions = StandardsBasedQuestion.all
-
+    # @standards_based_questions = StandardsBasedQuestion.all
+    @standards_based_questions = StandardsBasedQuestion.find_by_student_expectation(params[:student_expectation])
+    
     render json: @standards_based_questions
   end
 
