@@ -12,8 +12,8 @@ class StandardsBasedQuestionsController < ApplicationController
   end
 
   private
-    def set_standards_based_exit_ticket_question
-      @standards_basedquestion = StandardsBasedQuestion.find(params[:id])
+    def set_standards_based_question
+      @standards_based_question = StandardsBasedQuestion.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.

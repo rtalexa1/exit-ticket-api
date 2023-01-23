@@ -4,4 +4,12 @@ class StandardsBasedQuestion < ApplicationRecord
 
   has_many :standards_based_exit_ticket_questions
   has_one_attached :image
+
+  def self.find_by_student_expectation(student_expectation)
+    StandardsBasedQuestion.where("student_expectation LIKE ?", student_expectation)
+  end
+
+  def image_url
+    self.image.url
+  end
 end
