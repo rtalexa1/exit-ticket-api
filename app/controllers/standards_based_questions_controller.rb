@@ -5,11 +5,11 @@ class StandardsBasedQuestionsController < ApplicationController
     # @standards_based_questions = StandardsBasedQuestion.all
     @standards_based_questions = StandardsBasedQuestion.find_by_student_expectation(params[:student_expectation])
     
-    render json: @standards_based_questions
+    # render json: QuestionSerializer.new(@standards_based_questions).call
   end
 
   def show
-    render json: @standards_based_question
+    render json: QuestionSerializer.new(@standards_based_question).call
   end
 
   private

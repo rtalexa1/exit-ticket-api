@@ -10,6 +10,6 @@ class StandardsBasedQuestion < ApplicationRecord
   end
 
   def image_url
-    self.image.url
+    Rails.application.routes.url_helpers.rails_blob_url(image)
   end
 end
