@@ -3,14 +3,13 @@ class StandardsBasedQuestionsController < ApplicationController
 
   def index
     @standards_based_questions = StandardsBasedQuestion
-      .find_by_student_expectation("32A").to_a
-      # .find_by_student_expectation(params[:student_expectation])
+      .find_by_student_expectation(params[:student_expectation])
 
-    @standards_based_questions.map! do |question|
+    serialized = @standards_based_questions.map do |question|
       StandardsBasedQuestionSerializer.new(question).call
     end
     
-    render json: @standards_based_questions
+    render json: serialized
   end
 
   def show
