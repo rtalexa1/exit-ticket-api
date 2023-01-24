@@ -24,7 +24,7 @@ require 'csv'
 
 array = []
 
-CSV.foreach("./staar-questions-third-grade-only.csv", headers: true, col_sep: ",") do |row|
+CSV.foreach(Rails.root.join("lib/staar-questions-third-grade-only.csv"), headers: true, col_sep: ",") do |row|
   array << row[1]
 end
 
