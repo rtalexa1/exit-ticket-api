@@ -19,3 +19,21 @@
 
 # Find a way to retrieve all the pictures that I've added to the bucket and get them into Rails
 # For each, create a new record and attach the image
+
+require 'csv'
+
+array = []
+
+CSV.foreach("./staar-questions-third-grade-only.csv", headers: true, col_sep: ",") do |row|
+  array << row[1]
+end
+
+question_extensions = array.select { |item| item.include?(".jpg") }
+
+question_extensions.each do |question_extension|
+  student_expectation = question_extension.gsub("third-grade/math/", "").gsub(".jpg", "")
+  sb_question = StandardsBasedQuestion.new(student_expectation: student_expectation)
+  question_pic = Down.download("https://staar-questions.s3.us-east-2.amazonaws.com/third-grade/math/#{student_expectation}.jpg")
+  sb_question.image.attach(io: question_pic, filename: "#{student_expectation}.jpg")
+  sb_question.save
+end
