@@ -22,13 +22,11 @@
 
 require 'csv'
 
-array = []
+question_extensions = []
 
 CSV.foreach(Rails.root.join("lib/staar-questions-third-grade-only.csv"), headers: true, col_sep: ",") do |row|
-  array << row[1]
+  question_extensions << row[1] if row[1].include?(".jpg")
 end
-
-question_extensions = array.select { |item| item.include?(".jpg") }
 
 question_extensions.each do |question_extension|
   student_expectation = question_extension.gsub("third-grade/math/", "").gsub(".jpg", "")
