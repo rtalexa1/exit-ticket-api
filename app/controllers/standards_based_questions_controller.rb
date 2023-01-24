@@ -2,14 +2,19 @@ class StandardsBasedQuestionsController < ApplicationController
   before_action :set_standards_based_question, only: :show
 
   def index
-    # @standards_based_questions = StandardsBasedQuestion.all
-    @standards_based_questions = StandardsBasedQuestion.find_by_student_expectation(params[:student_expectation])
+    @standards_based_questions = StandardsBasedQuestion
+      .find_by_student_expectation("32A").to_a
+      # .find_by_student_expectation(params[:student_expectation])
+
+    @standards_based_questions.map! do |question|
+      StandardsBasedQuestionSerializer.new(question).call
+    end
     
-    # render json: QuestionSerializer.new(@standards_based_questions).call
+    render json: @standards_based_questions
   end
 
   def show
-    render json: QuestionSerializer.new(@standards_based_question).call
+    render json: StandardsBasedQuestionSerializer.new(@standards_based_question).call
   end
 
   private

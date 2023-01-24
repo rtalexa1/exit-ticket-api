@@ -16,3 +16,6 @@
 # question_pic = Down.download("https://staar-questions.s3.us-east-2.amazonaws.com/third-grade/math/32A1.jpg")
 # sb_question.image.attach(io: question_pic, filename: "32A1.jpg")
 # sb_question.save
+
+# Find a way to retrieve all the pictures that I've added to the bucket and get them into Rails
+# For each, create a new record and attach the image
