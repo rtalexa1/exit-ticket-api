@@ -9,4 +9,8 @@ class ExitTicket < ApplicationRecord
   has_many :standards_based_exit_ticket_questions
   has_many :standards_based_questions, 
     through: :standards_based_exit_ticket_questions
+
+  def questions
+    self.standards_based_exit_ticket_questions + self.reflection_exit_ticket_questions
+  end
 end
