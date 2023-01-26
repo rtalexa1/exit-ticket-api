@@ -15,23 +15,25 @@ class ReflectionExitTicketQuestionsController < ApplicationController
 
   # POST /reflection_exit_ticket_questions
   def create
-    @reflection_exit_ticket_question = Reflection_ExitTicketQuestion.new(
-      reflection_exit_ticket_question_params
-    )
-
-    if @reflection_exit_ticket_question.save
-      render json: @reflection_exit_ticket_question, 
-        status: :created, 
-        location: @reflection_exit_ticket_question
-    else
-      render json: @reflection_exit_ticket_question.errors, 
-      status: :unprocessable_entity
+    begin
+      ReflectionExitTicketQuestion.transaction do
+        @reflection_exit_ticket_questions = ReflectionExitTicketQuestion.create!(reflection_exit_ticket_questions_params)
+      end
+    rescue ActiveRecord::RecordInvalid => exception
+      @reflection_exit_ticket_questions = {
+        error: {
+          status: 422,
+          message: exception
+        }
+      }
     end
+
+    render json: @reflection_exit_ticket_questions
   end
 
   # PATCH/PUT /reflection_exit_ticket_questions/1
   def update
-    if @reflection_exit_ticket_question.update(reflection_exit_ticket_question_params)
+    if @reflection_exit_ticket_question.update(reflection_exit_ticket_questions_params)
       render json: @reflection_exit_ticket_question
     else
       render json: @reflection_exit_ticket_question.errors, 
@@ -51,7 +53,9 @@ class ReflectionExitTicketQuestionsController < ApplicationController
     end
 
     # Only allow a list of trusted parameters through.
-    def reflection_exit_ticket_question_params
-      params.require(:reflection_exit_ticket_question).permit(:exit_ticket_id, :ref_question_id)
+    def reflection_exit_ticket_questions_params
+      params
+        .require(reflection_exit_ticket_questions: [:exit_ticket_id, :ref_question_id])
+        .permit(:reflection_exit_ticket_questions)
     end
 end
