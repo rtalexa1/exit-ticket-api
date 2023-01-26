@@ -1,11 +1,12 @@
 class ReflectionQuestionsController < ApplicationController
   before_action :set_reflection_question, only: %i[ show update destroy ]
+  wrap_parameters false 
 
   # GET /reflection_questions
   def index
-    @reflection_questions = ReflectionExitTicketQuestion.all
+    @reflection_questions = ReflectionQuestion.all
 
-    render json: @reflection__questions
+    render json: @reflection_questions
   end
 
   # GET /reflection_questions/1
@@ -17,7 +18,7 @@ class ReflectionQuestionsController < ApplicationController
   def create
     begin
       ReflectionQuestion.transaction do 
-        @reflection_questions = ReflectionQuestion.create!(reflection_questions_params)
+        @reflection_questions = ReflectionQuestion.create!(reflection_questions_params[:reflection_questions])
       end
     rescue
       ActiveRecord::RecordInvalid => exception
@@ -50,11 +51,11 @@ class ReflectionQuestionsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_reflection_question
-      @reflection_question = ReflectionExitTicketQuestion.find(params[:id])
+      @reflection_question = ReflectionQuestion.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
     def reflection_questions_params
-      params.require(reflection_questions: [:text]).permit(:reflection_questions)
+      params.permit(reflection_questions: [:text])
     end
 end

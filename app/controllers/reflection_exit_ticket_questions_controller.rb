@@ -1,5 +1,6 @@
 class ReflectionExitTicketQuestionsController < ApplicationController
   before_action :set_reflection_exit_ticket_question, only: %i[ show update destroy ]
+  wrap_parameters false 
 
   # GET /reflection_exit_ticket_questions
   def index
@@ -17,7 +18,8 @@ class ReflectionExitTicketQuestionsController < ApplicationController
   def create
     begin
       ReflectionExitTicketQuestion.transaction do
-        @reflection_exit_ticket_questions = ReflectionExitTicketQuestion.create!(reflection_exit_ticket_questions_params)
+        @reflection_exit_ticket_questions = ReflectionExitTicketQuestion
+          .create!(reflection_exit_ticket_questions_params[:reflection_exit_ticket_questions])
       end
     rescue ActiveRecord::RecordInvalid => exception
       @reflection_exit_ticket_questions = {
@@ -55,7 +57,6 @@ class ReflectionExitTicketQuestionsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def reflection_exit_ticket_questions_params
       params
-        .require(reflection_exit_ticket_questions: [:exit_ticket_id, :ref_question_id])
-        .permit(:reflection_exit_ticket_questions)
+        .permit(reflection_exit_ticket_questions: [:exit_ticket_id, :ref_question_id])
     end
 end
