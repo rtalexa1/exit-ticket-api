@@ -15,17 +15,20 @@ class StandardsBasedExitTicketQuestionsController < ApplicationController
 
   # POST /standards_based_exit_ticket_questions
   def create
-    @standards_based_exit_ticket_question = StandardsBasedExitTicketQuestion
-      .new(standards_based_exit_ticket_question_params)
-
-    if @standards_based_exit_ticket_question.save
-      render json: @standards_based_exit_ticket_question, 
-      status: :created, 
-      location: @standards_based_exit_ticket_question
-    else
-      render json: @standards_based_exit_ticket_question.errors, 
-      status: :unprocessable_entity
+    begin
+      StandardsBasedExitTicketQuestion.transaction do
+        @standards_based_exit_ticket_questions = StandardsBasedExitTicketQuestion.create!(standards_based_exit_ticket_questions_params)
+      end
+    rescue ActiveRecord::RecordInvalid => exception
+      @standards_based_exit_ticket_questions = {
+        error: {
+          status: 422,
+          message: exception
+        }
+      }
     end
+
+    render json: @standards_based_exit_ticket_questions
   end
 
   # PATCH/PUT /standards_based_exit_ticket_questions/1
@@ -51,8 +54,9 @@ class StandardsBasedExitTicketQuestionsController < ApplicationController
     end
 
     # Only allow a list of trusted parameters through.
-    def standards_based_exit_ticket_question_params
-      params.require(:standards_based_exit_ticket_question)
-      .permit(:exit_ticket_id, :sb_question_id)
+    def standards_based_exit_ticket_questions_params
+      params
+        .require(standards_based_exit_ticket_questions: [:exit_ticket_id, :sb_question_id])
+        .permit(:standards_based_exit_ticket_questions)
     end
 end
