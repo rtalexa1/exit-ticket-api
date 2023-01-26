@@ -1,5 +1,6 @@
 class StandardsBasedExitTicketQuestionsController < ApplicationController
   before_action :set_standards_based_exit_ticket_question, only: %i[ show update destroy ]
+  wrap_parameters false 
 
   # GET /standards_based_exit_ticket_questions
   def index
@@ -17,7 +18,8 @@ class StandardsBasedExitTicketQuestionsController < ApplicationController
   def create
     begin
       StandardsBasedExitTicketQuestion.transaction do
-        @standards_based_exit_ticket_questions = StandardsBasedExitTicketQuestion.create!(standards_based_exit_ticket_questions_params)
+        @standards_based_exit_ticket_questions = StandardsBasedExitTicketQuestion
+          .create!(standards_based_exit_ticket_questions_params[:standards_based_exit_ticket_questions])
       end
     rescue ActiveRecord::RecordInvalid => exception
       @standards_based_exit_ticket_questions = {
@@ -55,8 +57,6 @@ class StandardsBasedExitTicketQuestionsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def standards_based_exit_ticket_questions_params
-      params
-        .require(standards_based_exit_ticket_questions: [:exit_ticket_id, :sb_question_id])
-        .permit(:standards_based_exit_ticket_questions)
+      params.permit(standards_based_exit_ticket_questions: [:exit_ticket_id, :sb_question_id])
     end
 end
