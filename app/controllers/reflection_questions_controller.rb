@@ -15,18 +15,21 @@ class ReflectionQuestionsController < ApplicationController
 
   # POST /reflection_""_questions
   def create
-    @reflection_question = Reflection_ExitTicketQuestion.new(
-      reflection_question_params
-    )
-
-    if @reflection_question.save
-      render json: @reflection_question, 
-        status: :created, 
-        location: @reflection_question
-    else
-      render json: @reflection_question.errors, 
-      status: :unprocessable_entity
+    begin
+      ReflectionQuestion.transaction do 
+        @reflection_questions = ReflectionQuestion.create!(reflection_questions_params)
+      end
+    rescue
+      ActiveRecord::RecordInvalid => exception
+      @reflection_questions = {
+        error: {
+          status: 422,
+          message: exception
+        }
+      }
     end
+
+    render json: @reflection_questions
   end
 
   # PATCH/PUT /reflection_questions/1
@@ -51,7 +54,7 @@ class ReflectionQuestionsController < ApplicationController
     end
 
     # Only allow a list of trusted parameters through.
-    def reflection_question_params
-      params.require(:reflection_question).permit(:text)
+    def reflection_questions_params
+      params.require(reflection_questions: [:text]).permit(:reflection_questions)
     end
 end
