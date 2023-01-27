@@ -57,6 +57,6 @@ class ReflectionExitTicketQuestionsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def reflection_exit_ticket_questions_params
       params
-        .permit(reflection_exit_ticket_questions: [:exit_ticket_id, :ref_question_id])
+        .permit(reflection_exit_ticket_questions: [:exit_ticket_id, :ref_question_id, :order])
     end
 end

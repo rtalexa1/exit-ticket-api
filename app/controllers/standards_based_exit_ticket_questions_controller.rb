@@ -57,6 +57,6 @@ class StandardsBasedExitTicketQuestionsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def standards_based_exit_ticket_questions_params
-      params.permit(standards_based_exit_ticket_questions: [:exit_ticket_id, :sb_question_id])
+      params.permit(standards_based_exit_ticket_questions: [:exit_ticket_id, :sb_question_id, :order])
     end
 end

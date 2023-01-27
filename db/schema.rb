@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_01_20_160452) do
+ActiveRecord::Schema[7.0].define(version: 2023_01_26_214212) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -60,6 +60,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_20_160452) do
     t.integer "ref_question_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "order", null: false
     t.index ["exit_ticket_id"], name: "index_reflection_exit_ticket_questions_on_exit_ticket_id"
     t.index ["ref_question_id"], name: "index_reflection_exit_ticket_questions_on_ref_question_id"
   end
@@ -75,6 +76,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_20_160452) do
     t.integer "sb_question_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "order", null: false
     t.index ["exit_ticket_id"], name: "index_standards_based_exit_ticket_questions_on_exit_ticket_id"
     t.index ["sb_question_id"], name: "index_standards_based_exit_ticket_questions_on_sb_question_id"
   end
