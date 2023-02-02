@@ -18,7 +18,7 @@ class ExitTicket < ApplicationRecord
     questions_to_display = self.questions.map do |question|
       if question.class == StandardsBasedExitTicketQuestion
         sb_question = StandardsBasedQuestion.find(question.sb_question_id)
-        { type: "sb_question", order: question.order, question_url: sb_question.image_url }
+        { type: "sb_question", order: question.order, image_url: sb_question.image_url }
       elsif question.class == ReflectionExitTicketQuestion
         ref_question = ReflectionQuestion.find(question.ref_question_id)
         { type: "ref_question", order: question.order, text: ref_question.text }

@@ -11,7 +11,7 @@ class ExitTicketsController < ApplicationController
   # GET /exit_tickets/1
   def show
     @exit_ticket_questions = @exit_ticket.display_questions
-
+    p @exit_ticket_questions
     render json: @exit_ticket_questions
   end
 
