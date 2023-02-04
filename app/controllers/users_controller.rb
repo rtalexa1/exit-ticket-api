@@ -3,13 +3,14 @@ class UsersController < ApplicationController
 
   # GET /users
   def index
-    @users = User.all
-
-    render json: @users
+    @user = User.find_by(email: params[:email])
+    p @user
+    render json: @user
   end
 
   # GET /users/1
   def show
+
     render json: @user
   end
 
