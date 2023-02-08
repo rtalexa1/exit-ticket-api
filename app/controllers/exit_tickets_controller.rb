@@ -3,7 +3,7 @@ class ExitTicketsController < ApplicationController
 
   # GET /exit_tickets
   def index
-    @exit_tickets = ExitTicket.all
+    @exit_tickets = ExitTicket.where(user_id: params[:user_id])
 
     render json: @exit_tickets
   end
