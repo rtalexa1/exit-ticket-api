@@ -85,4 +85,5 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 end
 
+# TODO Change host to production
 Rails.application.routes.default_url_options[:host] = "https://exit-ticket-api.herokuapp.com/"
