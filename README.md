@@ -24,6 +24,6 @@ Additional features that I would like to implement in the future include:
 - PostgreSQL
 
 ## Contact
-Richard Alexander - rtalexa1@gmail.com
-Project link: https://github.com/rtalexa1/exit-ticket-api
+Richard Alexander - rtalexa1@gmail.com. 
+Project link: https://github.com/rtalexa1/exit-ticket-api  
 Link to front end repo: https://github.com/rtalexa1/exit-ticket-frontend
