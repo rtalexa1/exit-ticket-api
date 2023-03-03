@@ -30,11 +30,11 @@ RSpec.describe ExitTicket, type: :model do
       expect(ticket.questions).to eq([sb_exit_ticket_question, ref_exit_ticket_question])
     end
   end
-  
+
   describe "#display_questions" do
     it "returns an array of all questions formatted with relevant data for the front end" do
       user = User.create!(email: "email.com")
-      sb_question = StandardsBasedQuestion.create!(student_expectation: "32A")
+      sb_question = StandardsBasedQuestion.new(student_expectation: "32A")
       question_pic = Down.download("https://media.istockphoto.com/id/1349363968/photo/giraffe-riding-an-elephant-on-field-friendship-and-cooperation-concept.jpg?b=1&s=170667a&w=0&k=20&c=f5K4jUJ3fT55j7EV_wAcu3yjWHP3xPJ0gg9SPo9krEE=")
       sb_question.image.attach(io: question_pic, filename: "pic.jpg")
       sb_question.save
