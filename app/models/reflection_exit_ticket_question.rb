@@ -1,6 +1,6 @@
 class ReflectionExitTicketQuestion < ApplicationRecord
 
-  validates :exit_ticket_id, :ref_question_id, presence: true
+  validates :exit_ticket_id, :ref_question_id, :order, presence: true
 
   belongs_to :exit_ticket
   belongs_to :reflection_question,

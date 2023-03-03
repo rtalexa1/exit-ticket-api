@@ -12,7 +12,8 @@ RSpec.describe StandardsBasedQuestion, type: :model do
 
   describe "::find_by_student_expectation" do
     it "returns all questions that match the given student expectation" do
-      
+      question = StandardsBasedQuestion.create(student_expectation: "51A1")
+      expect(StandardsBasedQuestion.find_by_student_expectation("51A1")).to eq([question])
     end
   end
 end
