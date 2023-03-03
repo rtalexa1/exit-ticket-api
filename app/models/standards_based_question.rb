@@ -2,7 +2,8 @@ class StandardsBasedQuestion < ApplicationRecord
 
   validates :student_expectation, presence: true
 
-  has_many :standards_based_exit_ticket_questions
+  has_many :standards_based_exit_ticket_questions,
+    foreign_key: :sb_question_id
   has_one_attached :image
 
   def self.find_by_student_expectation(student_expectation)
