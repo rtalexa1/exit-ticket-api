@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   # GET /users
   def index
     @user = User.find_by(email: params[:email])
-    p @user
+    
     render json: @user
   end
 
