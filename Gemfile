@@ -57,3 +57,7 @@ group :development do
   gem "binding_of_caller"
 end
 
+
+gem "devise", "~> 4.9"
+
+gem "devise-jwt", "~> 0.10.0"
