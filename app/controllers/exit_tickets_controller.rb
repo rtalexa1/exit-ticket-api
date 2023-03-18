@@ -1,9 +1,9 @@
 class ExitTicketsController < ApplicationController
-  before_action :set_exit_ticket, only: %i[ show update destroy ]
-
+  before_action :authenticate_user!
+  
   # GET /exit_tickets
   def index
-    @exit_tickets = ExitTicket.where(user_id: params[:user_id])
+    @exit_tickets = current_user.exit_tickets
 
     render json: @exit_tickets
   end
