@@ -1,23 +1,42 @@
+# frozen_string_literal: true
+
 class Users::RegistrationsController < Devise::RegistrationsController
+  # before_action :configure_sign_up_params, only: [:create]
+  # before_action :configure_account_update_params, only: [:update]
   respond_to :json
 
+  # GET /resource/sign_up
+  def new
+    super
+  end
+
+  # POST /resource
+  def create
+    super
+  end
+
+  # GET /resource/edit
+  def edit
+    super
+  end
+
   private
-  def respond_with(resource, _opts = {})
-    register_success && return if resource.persisted?
-
-    register_failed
-  end
-
-  def register_success
-    render json: {
-      message: "Signed up successfully",
-      user: current_user
-    }, status: :ok
-  end
-
-  def register_failed
-    render json: {
-      message: "Something went wrong"
-    }, status: :unprocessable_entity
+  def respond_with(resource, options = {})
+    if resource.persisted?
+      render json: {
+        status: { 
+          code: 200, 
+          message: "Signed up successfully", 
+          data: resource 
+        }
+      }
+    else
+      render json: {
+        status: {
+          message: "User could not be created",
+          errors: resource.errors.full_messages
+        }
+      }
+    end
   end
 end

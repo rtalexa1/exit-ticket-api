@@ -1,29 +1,27 @@
+# frozen_string_literal: true
+
 class Users::SessionsController < Devise::SessionsController
-  respond_to :json
+  # before_action :configure_sign_in_params, only: [:create]
 
-  private
-  def respond_with(_resource, _opts = {})
-    render json: {
-      message: "You are now logged in",
-      user: current_user
-    }, status: :ok
+  # GET /resource/sign_in
+  def new
+    super
   end
 
-  def respond_to_on_destroy
-    logout_success && return if current_user
-
-    logout_failure
+  # POST /resource/sign_in
+  def create
+    super
   end
 
-  def logout_success
-    render json: {
-      message: "You are logged out"
-    }, status: :ok
+  # DELETE /resource/sign_out
+  def destroy
+    super
   end
 
-  def logout_failure
-    render json: {
-      message: "Hmm, something went wrong" 
-    }, status: :unathorized
-  end
+  # protected
+
+  # If you have extra params to permit, append them to the sanitizer.
+  # def configure_sign_in_params
+  #   devise_parameter_sanitizer.permit(:sign_in, keys: [:attribute])
+  # end
 end
