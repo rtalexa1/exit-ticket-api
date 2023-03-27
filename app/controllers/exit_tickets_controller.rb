@@ -1,5 +1,5 @@
 class ExitTicketsController < ApplicationController
-  before_action :user_signed_in?
+  # before_action :authenticate_user!
   
   # GET /exit_tickets
   def index

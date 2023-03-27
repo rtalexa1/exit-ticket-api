@@ -26,7 +26,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
       render json: {
         status: 200, 
         message: "Signed up successfully", 
-        data: resource 
+        user: current_user 
       }, status: :ok
     else
       render json: {

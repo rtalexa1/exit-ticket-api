@@ -6,6 +6,10 @@ Rails.application.routes.draw do
   }
   get "/member-data", to: "members#show"
 
+  devise_scope :user do
+    get 'get_tickets' => 'exit_tickets#index'
+  end
+
   resources :exit_tickets
   resources :standards_based_questions, only: [:index, :show]
   resources :standards_based_exit_ticket_questions
