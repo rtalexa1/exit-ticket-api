@@ -20,7 +20,7 @@ class ExitTicketsController < ApplicationController
     user = User.find(@exit_ticket.user_id)
 
     if @exit_ticket.save
-      render json: @exit_ticket, status: :created, location: user_exit_ticket_url(@exit_ticket, user) 
+      render json: @exit_ticket, status: :created, location: exit_ticket_url(@exit_ticket) 
     else
       render json: @exit_ticket.errors, status: :unprocessable_entity
     end
