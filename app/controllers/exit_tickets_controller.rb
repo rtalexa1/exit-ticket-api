@@ -5,7 +5,11 @@ class ExitTicketsController < ApplicationController
   def index
     @exit_tickets = current_user.exit_tickets
 
-    render json: @exit_tickets
+    serialized = @exit_tickets.map do |ticket|
+      ExitTicketSerializer.new(ticket).call
+    end
+    
+    render json: serialized
   end
 
   # GET /exit_tickets/1

@@ -24,6 +24,6 @@ class ExitTicket < ApplicationRecord
         { type: "ref_question", order: question.order, text: ref_question.text }
       end
     end
-    questions_to_display
+    questions_to_display.sort_by { |key| key[:order] }
   end
 end
